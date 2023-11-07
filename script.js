@@ -3,9 +3,10 @@
 $(document).ready(function(){
     var database = firebase.database();
     var Led1Status;
-    
+   
     // Referência à variável "Corrente" no Firebase
-    var correnteRef = database.ref("Corrente");
+    var correnteRef = database.ref("Maquinas/EC:62:60:9D:12:18/Corrente");
+
 
     correnteRef.on("value", function(snapshot) {
         var corrente = snapshot.val();
@@ -14,8 +15,10 @@ $(document).ready(function(){
         document.getElementById("gauge").textContent = "Corrente: " + corrente + " A";
     });
 
+
     // Referência à variável "Led1Status" dentro do caminho "Maquinas > EC:62:60:9D:12:18"
-    var maquinasRef = database.ref("Maquinas/EC:62:60:9D:12:18/ledStatus");
+    var maquinasRef = database.ref("Maquinas/EC:62:60:9D:12:18/Status");
+
 
     maquinasRef.on("value", function(snapshot) {
         Led1Status = snapshot.val();
@@ -29,8 +32,10 @@ $(document).ready(function(){
         }
     });
 
+
     $(".toggle-btn").click(function() {
-        var firebaseRef = firebase.database().ref().child("Maquinas/EC:62:60:9D:12:18/ledStatus");
+        var firebaseRef = firebase.database().ref().child("Maquinas/EC:62:60:9D:12:18/Status");
+
 
         // Postar para o Firebase
         if (Led1Status == "1") {
@@ -42,4 +47,3 @@ $(document).ready(function(){
         }
     });
 });
-
