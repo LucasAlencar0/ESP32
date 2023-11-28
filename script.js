@@ -1,11 +1,10 @@
 
-
 $(document).ready(function(){
     var database = firebase.database();
     var Led1Status;
    
     // Referência à variável "Corrente" no Firebase
-    var correnteRef = database.ref("Maquinas/EC:62:60:9D:12:18/Corrente");
+    var correnteRef = database.ref("Maquinas/EC:62:60:9D:12:18/CorrenteAtual");
 
 
     correnteRef.on("value", function(snapshot) {
